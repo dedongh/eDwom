@@ -634,5 +634,6 @@
 
         <div class="clearfix"></div>
 
-    </div><!--/row-->
+    </div>
+    <!--/row-->
 @endsection
