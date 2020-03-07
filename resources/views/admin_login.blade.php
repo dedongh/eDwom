@@ -55,19 +55,29 @@
                     <a href="index.html"><i class="halflings-icon home"></i></a>
                     <a href="#"><i class="halflings-icon cog"></i></a>
                 </div>
+                <p class="alert-danger">
+                <?php
+                use Illuminate\Support\Facades\Session;
+                $message = Session::get('message');
+                if ($message) {
+                    echo $message;
+                    Session::put('message', null);
+                }
+                ?>
+                </p>
                 <h2>Login to your account</h2>
-                <form class="form-horizontal" action="http://bootstrapmaster.com/live/metro/index.html" method="post">
+                <form class="form-horizontal" action="{{url('/admin-dashboard')}}" method="post">
+                    {{ csrf_field() }}
                     <fieldset>
-
                         <div class="input-prepend" title="Username">
                             <span class="add-on"><i class="halflings-icon user"></i></span>
-                            <input class="input-large span10" name="username" id="username" type="text" placeholder="type username"/>
+                            <input class="input-large span10" name="admin_email" type="email" placeholder="type email address"/>
                         </div>
                         <div class="clearfix"></div>
 
                         <div class="input-prepend" title="Password">
                             <span class="add-on"><i class="halflings-icon lock"></i></span>
-                            <input class="input-large span10" name="password" id="password" type="password" placeholder="type password"/>
+                            <input class="input-large span10" name="admin_password" id="password" type="password" placeholder="type password"/>
                         </div>
                         <div class="clearfix"></div>
 
@@ -77,6 +87,7 @@
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                         <div class="clearfix"></div>
+                    </fieldset>
                 </form>
                 <hr>
                 <h3>Forgot Password?</h3>
@@ -93,22 +104,24 @@
 
 <!-- start: JavaScript-->
 
-<script src="js/jquery-1.9.1.min.js"></script>
-<script src="js/jquery-migrate-1.0.0.min.js"></script>
+<script src="{{asset('backend/js/jquery-1.9.1.min.js')}}"></script>
+<script src="{{asset('backend/js/jquery-migrate-1.0.0.min.js')}}"></script>
 
-<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="{{asset('backend/js/jquery-ui-1.10.0.custom.min.js')}}"></script>
 
-<script src="js/jquery.ui.touch-punch.js"></script>
+<script src="{{asset('backend/js/jquery.ui.touch-punch.js')}}"></script>
 
-<script src="js/modernizr.js"></script>
+<script src="{{asset('backend/js/modernizr.js')}}"></script>
 
-<script src="js/bootstrap.min.js"></script>
+<script src="{{asset('backend/js/bootstrap.min.js')}}"></script>
 
-<script src="js/jquery.cookie.js"></script>
+<script src="{{asset('backend/js/jquery.cookie.js')}}"></script>
 
-<script src='js/fullcalendar.min.js'></script>
+<script src='{{asset('backend/js/fullcalendar.min.js')}}'></script>
 
-<script src='js/jquery.dataTables.min.js'></script>
+<script src='{{asset('backend/js/jquery.dataTables.min.js')}}'></script>
+
+<script src="{{asset('backend/js/custom.js')}}"></script>
 
 {{--<script src="js/excanvas.js"></script>
 <script src="js/jquery.flot.js"></script>
@@ -146,7 +159,7 @@
 
 <script src="js/retina.js"></script>--}}
 
-<script src="js/custom.js"></script>
+
 <!-- end: JavaScript-->
 
 </body>
