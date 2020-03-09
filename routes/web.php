@@ -28,4 +28,8 @@ Route::get('/add-brand','BrandController@index');
 Route::post('/save-brand','BrandController@save_brand');
 Route::get('/all-brand','BrandController@all_brand');
 Route::get('/delete-brand/{brand_id}','BrandController@delete_brand');
+Route::get('/unactive_brand/{brand_id}','BrandController@unactive_brand');
+Route::get('/active_brand/{brand_id}','BrandController@active_brand');
+Route::get('/edit-brand/{brand_id}','BrandController@edit_brand');
+Route::post('/update-brand/{brand_id}','BrandController@update_brand');
 
