@@ -33,10 +33,13 @@ class BrandController extends Controller
     public function all_brand()
     {
         $all_brand_info = DB::table('tbl_brands')->get();
-        $manage_category = view('admin.all_brands')
+        /*$manage_category = view('admin.all_brands')
             ->with('all_brand_info', $all_brand_info);
         return view('admin_layout')
-            ->with('admin.all_brands', $manage_category);
+            ->with('admin.all_brands', $manage_category);*/
+
+        return view('admin.all_brands')
+            ->with('all_brand_info', $all_brand_info);
     }
 
     public function delete_brand($brand_id)
@@ -70,10 +73,12 @@ class BrandController extends Controller
         $brand_info =  DB::table('tbl_brands')
             ->where('brand_id', $brand_id)
             ->first();
-        $brand_info = view('admin.edit_brand')
+        /*$brand_info = view('admin.edit_brand')
             ->with('brand_info', $brand_info);
         return view('admin_layout')
-            ->with('admin.edit_brand', $brand_info);
+            ->with('admin.edit_brand', $brand_info);*/
+       return view('admin.edit_brand')
+           ->with('brand_info', $brand_info);
     }
 
     public function update_brand(Request $request, $brand_id)

@@ -25,6 +25,16 @@
                 }
                 ?>
             </p>
+            <div class="alert-danger">
+                <?php
+
+                $error = Session::get('error_message');
+                if ($error){
+                    echo $error;
+                    Session::put('error_message',null);
+                }
+                ?>
+            </div>
             <div class="box-content">
                 <form class="form-horizontal" action="{{url('/save-product')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -39,7 +49,8 @@
                         <div class="control-group">
                             <label class="control-label" for="selectError3">Category</label>
                             <div class="controls">
-                                <select id="selectError3">
+                                <select id="selectError3" name="category_id">
+                                    <option >Select category</option>
                                     <?php
                                     $all_published_category = DB::table('tbl_category')
                                         ->where('publication_status',1)
@@ -55,7 +66,8 @@
                         <div class="control-group">
                             <label class="control-label" for="selectError3">Brand</label>
                             <div class="controls">
-                                <select id="selectError3">
+                                <select id="selectError3" name="brand_id">
+                                    <option >Select brand</option>
                                     <?php
                                     $all_published_brands = DB::table('tbl_brands')
                                         ->where('publication_status',1)

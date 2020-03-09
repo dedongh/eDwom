@@ -35,5 +35,5 @@ Route::post('/update-brand/{brand_id}','BrandController@update_brand');
 
 //product route
 Route::get('/add-product','ProductController@index');
-
+Route::post('/save-product','ProductController@save_product');
 
