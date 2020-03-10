@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use PhpParser\Node\Stmt\Return_;
 
 session_start();
 class AdminController extends Controller
@@ -17,10 +16,6 @@ class AdminController extends Controller
         return view('admin_login');
     }
 
-    public function show_dashboard()
-    {
-        return view('admin.dashboard');
-    }
 
     public function dashboard(Request $request)
     {
