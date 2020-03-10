@@ -95,8 +95,11 @@ class ProductController extends Controller
     public function edit_product($product_id)
     {
         $this->AdminAuthCheck();
-        $product_info =  DB::table('tbl_products')
-            ->where('product_id', $product_id)
+        $product_info = DB::table('tbl_products')
+            ->join('tbl_category', 'tbl_products.category_id','=', 'tbl_category.category_id')
+            ->join('tbl_brands','tbl_products.brand_id','=','tbl_brands.brand_id')
+            ->select('tbl_products.*','tbl_category.category_name', 'tbl_brands.brand_name')
+            ->where('tbl_products.product_id', $product_id)
             ->first();
         return view('admin.edit_product')
             ->with('product_info', $product_info);

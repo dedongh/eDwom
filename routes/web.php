@@ -43,3 +43,7 @@ Route::get('/active_product/{product_id}','ProductController@active_product');
 Route::get('/edit-product/{product_id}','ProductController@edit_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
 
+// slider routes
+Route::get('/add-slider','SliderController@index');
+Route::get('/all-slider','SliderController@all_slider');
+Route::post('/save-slider','SliderController@save_slider');
