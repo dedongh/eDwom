@@ -3,11 +3,20 @@
 use Illuminate\Support\Facades\Route;
 
 
-// frontend routes
+/*************************
+ * frontend routes       *
+ *                       *
+ * ***********************/
 Route::get('/','HomeController@index');
 
+// show product by category
 
-// backend routes
+
+
+/*************************
+ *  backend routes       *
+ *                       *
+ * ***********************/
 Route::get('/logout','SuperAdminController@logout');
 Route::get('/admin','AdminController@index');
 Route::get('/dashboard','SuperAdminController@index');
@@ -47,3 +56,6 @@ Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::get('/add-slider','SliderController@index');
 Route::get('/all-slider','SliderController@all_slider');
 Route::post('/save-slider','SliderController@save_slider');
+Route::get('/unactive_slider/{slider_id}','SliderController@unactive_slider');
+Route::get('/active_slider/{slider_id}','SliderController@active_slider');
+Route::get('/delete-slider/{slider_id}','SliderController@delete_slider');

@@ -13,6 +13,7 @@ class BrandController extends Controller
     //
     public function index()
     {
+        $this->AdminAuthCheck();
         return view('admin.add_brand');
     }
 
@@ -32,11 +33,8 @@ class BrandController extends Controller
 
     public function all_brand()
     {
+        $this->AdminAuthCheck();
         $all_brand_info = DB::table('tbl_brands')->get();
-        /*$manage_category = view('admin.all_brands')
-            ->with('all_brand_info', $all_brand_info);
-        return view('admin_layout')
-            ->with('admin.all_brands', $manage_category);*/
 
         return view('admin.all_brands')
             ->with('all_brand_info', $all_brand_info);
@@ -70,13 +68,10 @@ class BrandController extends Controller
 
     public function edit_brand($brand_id)
     {
+        $this->AdminAuthCheck();
         $brand_info =  DB::table('tbl_brands')
             ->where('brand_id', $brand_id)
             ->first();
-        /*$brand_info = view('admin.edit_brand')
-            ->with('brand_info', $brand_info);
-        return view('admin_layout')
-            ->with('admin.edit_brand', $brand_info);*/
        return view('admin.edit_brand')
            ->with('brand_info', $brand_info);
     }
@@ -96,5 +91,13 @@ class BrandController extends Controller
         return Redirect::to('/all-brand');
     }
 
-
+    public function AdminAuthCheck()
+    {
+        $admin_id = Session::get('admin_id');
+        if ($admin_id) {
+            return;
+        } else {
+            return Redirect::to('/admin')->send();
+        }
+    }
 }
