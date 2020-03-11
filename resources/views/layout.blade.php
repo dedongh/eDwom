@@ -32,8 +32,8 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> +233 054 244 4527 </a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> engineerskasa.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="{{asset('frontend/images/home/logo.png')}}" alt="" /></a>
+                        <a href="{{URL::to('/')}}"><img src="{{asset('frontend/images/home/logo.png')}}" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">

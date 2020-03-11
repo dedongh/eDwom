@@ -50,4 +50,17 @@ class HomeController extends Controller
         return view('pages.product_by_brand')
             ->with('product_by_brand',$product_by_brand);
     }
+    public function view_product($product_id)
+    {
+        $product_by_id = DB::table('tbl_products')
+            ->join('tbl_category', 'tbl_products.category_id','=', 'tbl_category.category_id')
+            ->join('tbl_brands','tbl_products.brand_id','=','tbl_brands.brand_id')
+            ->select('tbl_products.*','tbl_category.category_name', 'tbl_brands.brand_name')
+            ->where('tbl_products.publication_status',1)
+            ->where('tbl_products.product_id', $product_id)
+            ->first();
+
+        return view('pages.product_details')
+            ->with('product_by_id',$product_by_id);
+    }
 }
