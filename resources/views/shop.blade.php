@@ -13,7 +13,7 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
     <script src="{{('frontend/js/html5shiv.js')}}"></script>
     <script src="{{('frontend/js/respond.min.js')}}"></script>
     <![endif]-->
@@ -148,45 +148,11 @@ $all_published_sliders = DB::table('tbl_slider')
     ->get();
 
 ?>
-<section id="slider"><!--slider-->
+<section id="advertisement">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        @foreach($all_published_sliders as $slider)
-                        <li data-target="#slider-carousel" data-slide-to="{{$loop->index}}" class="{{$loop->first ?'active':''}}"></li>
-                        @endforeach
-                    </ol>
-
-                    <div class="carousel-inner">
-                        @foreach($all_published_sliders as $slider)
-                        <div class="item {{$loop->first ? 'active':''}}">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-DWOM</h1>
-                                <h2>Free Laravel E-Commerce Template</h2>
-                                <p>Designed by EK IT Solutions for learning purposes and as starter for junior devs</p>
-                                <button type="button" class="btn btn-default get">Get the source codes now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="{{URL::to($slider->slider_image)}}" class="girl img-responsive" alt="" />
-                                {{--<img src="{{asset('frontend/images/home/pricing.png')}}"  class="pricing" alt="" />--}}
-                            </div>
-                        </div>
-                            @endforeach
-                    </div>
-                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
+        <img src="{{asset('frontend/images/shop/advertisement.jpg')}}" alt="" />
     </div>
-</section><!--/slider-->
+</section>
 
 <section>
     <div class="container">
@@ -202,7 +168,7 @@ $all_published_sliders = DB::table('tbl_slider')
                             ->get();
 
                         foreach ($all_published_category as $category):
-                            ?>
+                        ?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><a href="{{URL::to('/show_product_by_category/'.$category->category_id)}}">{{$category->category_name}}</a></h4>
@@ -221,9 +187,9 @@ $all_published_sliders = DB::table('tbl_slider')
                                     ->get();
 
                                 foreach ($all_published_brands as $brand):
-                                    ?>
+                                ?>
                                 <li><a href="{{URL::to('/show_product_by_brand/'.$brand->brand_id)}}"> <span class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
-                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div><!--/brands_products-->
@@ -246,6 +212,12 @@ $all_published_sliders = DB::table('tbl_slider')
             <div class="col-sm-9 padding-right">
                 {{-- include layout--}}
                 @yield('content')
+                <ul class="pagination">
+                    <li class="active"><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">&raquo;</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -384,18 +356,18 @@ $all_published_sliders = DB::table('tbl_slider')
                     </div>
                 </div>{{('
                 <d')}}iv class="col-sm-3 col-sm-offset-1">
-                    <div class="single-widget">
-                        <h2>About Shopper</h2>
-                        <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                        </form>
-                    </div>
+                <div class="single-widget">
+                    <h2>About Shopper</h2>
+                    <form action="#" class="searchform">
+                        <input type="text" placeholder="Your email address" />
+                        <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                        <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                    </form>
                 </div>
-
             </div>
+
         </div>
+    </div>
     </div>
 
     <div class="footer-bottom">

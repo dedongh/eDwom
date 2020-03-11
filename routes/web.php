@@ -11,7 +11,8 @@ Route::get('/','HomeController@index');
 
 // show product by category
 Route::get('/show_product_by_category/{category_id}','HomeController@show_product_by_category');
-
+// show product by brand
+Route::get('/show_product_by_brand/{brand_id}','HomeController@show_product_by_brand');
 
 
 /*************************
