@@ -222,7 +222,7 @@ $all_published_sliders = DB::table('tbl_slider')
 
                                 foreach ($all_published_brands as $brand):
                                     ?>
-                                <li><a href="#"> <span class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
+                                <li><a href="{{URL::to('/show_product_brand/'.$brand->brand_id)}}"> <span class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
                                     <?php endforeach; ?>
                             </ul>
                         </div>

@@ -21,4 +21,9 @@ class HomeController extends Controller
         return view('pages.home_content')
             ->with('all_published_product',$all_published_product);
     }
+
+    public function show_product_by_category($category_id)
+    {
+        echo $category_id;
+    }
 }
