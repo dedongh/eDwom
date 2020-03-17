@@ -19,7 +19,7 @@
                             <div class="overlay-content">
                                 <h2>GHS {{$product->product_price}}</h2>
                                 <p>{{$product->product_name}}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
+                                <a href="{{URL::to('/view_product/'.$product->product_id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
                                     to cart</a>
                             </div>
                         </div>

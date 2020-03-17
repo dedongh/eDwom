@@ -15,6 +15,10 @@ Route::get('/show_product_by_category/{category_id}','HomeController@show_produc
 Route::get('/show_product_by_brand/{brand_id}','HomeController@show_product_by_brand');
 // product details by ID
 Route::get('/view_product/{product_id}', 'HomeController@view_product');
+// add to cart
+Route::post('/add-to-cart', 'CartController@add_to_cart');
+// show cart
+Route::get('/show-cart', 'CartController@show_cart');
 
 
 /*************************
