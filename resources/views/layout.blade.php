@@ -13,14 +13,17 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
     <script src="{{('frontend/js/html5shiv.js')}}"></script>
     <script src="{{('frontend/js/respond.min.js')}}"></script>
     <![endif]-->
     <link rel="shortcut icon" href="{{asset('frontend/images/ico/favicon.ico')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('frontend/images/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('frontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{('frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{{asset('frontend/images/ico/apple-touch-icon-144-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{{asset('frontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{{('frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{('frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
 </head><!--/head-->
 
@@ -57,7 +60,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="{{URL::to('/')}}"><img src="{{asset('frontend/images/home/logo.png')}}" alt="" /></a>
+                        <a href="{{URL::to('/')}}"><img src="{{asset('frontend/images/home/logo.png')}}" alt=""/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -90,7 +93,15 @@
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+
+                            <?php
+                            $customer_id = Session::get('customer_id');
+                            ?>
+                            @if($customer_id != null)
+                                <li><a href="{{URL::to('/user-logout')}}"><i class="fa fa-unlock"></i> logout</a></li>
+                            @else
+                                <li><a href="{{URL::to('/login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -103,7 +114,8 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -119,7 +131,7 @@
                                     <li><a href="product-details.html">Product Details</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="{{URL::to('/login')}}">Login</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -144,7 +156,7 @@
 </header><!--/header-->
 <?php
 $all_published_sliders = DB::table('tbl_slider')
-    ->where('publication_status',1)
+    ->where('publication_status', 1)
     ->get();
 
 ?>
@@ -155,25 +167,27 @@ $all_published_sliders = DB::table('tbl_slider')
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         @foreach($all_published_sliders as $slider)
-                        <li data-target="#slider-carousel" data-slide-to="{{$loop->index}}" class="{{$loop->first ?'active':''}}"></li>
+                            <li data-target="#slider-carousel" data-slide-to="{{$loop->index}}"
+                                class="{{$loop->first ?'active':''}}"></li>
                         @endforeach
                     </ol>
 
                     <div class="carousel-inner">
                         @foreach($all_published_sliders as $slider)
-                        <div class="item {{$loop->first ? 'active':''}}">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-DWOM</h1>
-                                <h2>Free Laravel E-Commerce Template</h2>
-                                <p>Designed by EK IT Solutions for learning purposes and as starter for junior devs</p>
-                                <button type="button" class="btn btn-default get">Get the source codes now</button>
+                            <div class="item {{$loop->first ? 'active':''}}">
+                                <div class="col-sm-6">
+                                    <h1><span>E</span>-DWOM</h1>
+                                    <h2>Free Laravel E-Commerce Template</h2>
+                                    <p>Designed by EK IT Solutions for learning purposes and as starter for junior
+                                        devs</p>
+                                    <button type="button" class="btn btn-default get">Get the source codes now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="{{URL::to($slider->slider_image)}}" class="girl img-responsive" alt=""/>
+                                    {{--<img src="{{asset('frontend/images/home/pricing.png')}}"  class="pricing" alt="" />--}}
+                                </div>
                             </div>
-                            <div class="col-sm-6">
-                                <img src="{{URL::to($slider->slider_image)}}" class="girl img-responsive" alt="" />
-                                {{--<img src="{{asset('frontend/images/home/pricing.png')}}"  class="pricing" alt="" />--}}
-                            </div>
-                        </div>
-                            @endforeach
+                        @endforeach
                     </div>
                     <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                         <i class="fa fa-angle-left"></i>
@@ -198,14 +212,16 @@ $all_published_sliders = DB::table('tbl_slider')
                         <?php
                         use Illuminate\Support\Facades\DB;
                         $all_published_category = DB::table('tbl_category')
-                            ->where('publication_status',1)
+                            ->where('publication_status', 1)
                             ->get();
 
                         foreach ($all_published_category as $category):
-                            ?>
+                        ?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="{{URL::to('/show_product_by_category/'.$category->category_id)}}">{{$category->category_name}}</a></h4>
+                                <h4 class="panel-title"><a
+                                        href="{{URL::to('/show_product_by_category/'.$category->category_id)}}">{{$category->category_name}}</a>
+                                </h4>
                             </div>
                         </div>
                         <?php endforeach; ?>
@@ -217,13 +233,14 @@ $all_published_sliders = DB::table('tbl_slider')
                             <ul class="nav nav-pills nav-stacked">
                                 <?php
                                 $all_published_brands = DB::table('tbl_brands')
-                                    ->where('publication_status',1)
+                                    ->where('publication_status', 1)
                                     ->get();
 
                                 foreach ($all_published_brands as $brand):
-                                    ?>
-                                <li><a href="{{URL::to('/show_product_by_brand/'.$brand->brand_id)}}"> <span class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
-                                    <?php endforeach; ?>
+                                ?>
+                                <li><a href="{{URL::to('/show_product_by_brand/'.$brand->brand_id)}}"> <span
+                                            class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div><!--/brands_products-->
@@ -231,13 +248,14 @@ $all_published_sliders = DB::table('tbl_slider')
                     <div class="price-range"><!--price-range-->
                         <h2>Price Range</h2>
                         <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600"
+                                   data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br/>
                             <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
                         </div>
                     </div><!--/price-range-->
 
                     <div class="shipping text-center"><!--shipping-->
-                        <img src="{{asset('frontend/images/home/shipping.jpg')}}" alt="" />
+                        <img src="{{asset('frontend/images/home/shipping.jpg')}}" alt=""/>
                     </div><!--/shipping-->
 
                 </div>
@@ -266,7 +284,7 @@ $all_published_sliders = DB::table('tbl_slider')
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{URL::to('frontend/images/home/iframe1.png')}}" alt="" />
+                                    <img src="{{URL::to('frontend/images/home/iframe1.png')}}" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -281,7 +299,7 @@ $all_published_sliders = DB::table('tbl_slider')
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{URL::to('frontend/images/home/iframe2.png')}}" alt="" />
+                                    <img src="{{URL::to('frontend/images/home/iframe2.png')}}" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -296,7 +314,7 @@ $all_published_sliders = DB::table('tbl_slider')
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{URL::to('frontend/images/home/iframe3.png')}}" alt="" />
+                                    <img src="{{URL::to('frontend/images/home/iframe3.png')}}" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -311,7 +329,7 @@ $all_published_sliders = DB::table('tbl_slider')
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{URL::to('frontend/images/home/iframe4.png')}}" alt="" />
+                                    <img src="{{URL::to('frontend/images/home/iframe4.png')}}" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -324,7 +342,7 @@ $all_published_sliders = DB::table('tbl_slider')
                 </div>
                 <div class="col-sm-3">
                     <div class="address">
-                        <img src="{{asset('frontend/images/home/map.png')}}" alt="" />
+                        <img src="{{asset('frontend/images/home/map.png')}}" alt=""/>
                         <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
                     </div>
                 </div>
@@ -384,31 +402,32 @@ $all_published_sliders = DB::table('tbl_slider')
                     </div>
                 </div>{{('
                 <d')}}iv class="col-sm-3 col-sm-offset-1">
-                    <div class="single-widget">
-                        <h2>About Shopper</h2>
-                        <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                        </form>
-                    </div>
+                <div class="single-widget">
+                    <h2>About Shopper</h2>
+                    <form action="#" class="searchform">
+                        <input type="text" placeholder="Your email address"/>
+                        <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
+                        </button>
+                        <p>Get the most recent updates from <br/>our site and be updated your self...</p>
+                    </form>
                 </div>
-
             </div>
+
         </div>
+    </div>
     </div>
 
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
                 <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                <p class="pull-right">Designed by <span><a target="_blank"
+                                                           href="http://www.themeum.com">Themeum</a></span></p>
             </div>
         </div>
     </div>
 
 </footer><!--/Footer-->
-
 
 
 <script src="{{asset('frontend/js/jquery.js')}}"></script>

@@ -25,6 +25,11 @@ Route::get('/delete-cart/{id}', 'CartController@delete_cart');
 Route::get('/update-qty-up/{id}/{quantity}', 'CartController@update_qty_up');
 Route::get('/update-qty-down/{id}/{quantity}', 'CartController@update_qty_down');
 
+// login
+Route::get('/login','AuthController@index');
+Route::get('/user-logout','AuthController@logout');
+Route::post('/register-user', 'AuthController@register_user');
+Route::post('/login-user', 'AuthController@login_user');
 
 
 /*************************

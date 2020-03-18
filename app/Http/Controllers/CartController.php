@@ -63,4 +63,5 @@ class CartController extends Controller
         ));
         return Redirect::to('/show-cart');
     }
+
 }

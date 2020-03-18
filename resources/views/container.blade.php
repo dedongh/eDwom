@@ -143,6 +143,10 @@
     </div><!--/header-bottom-->
 </header><!--/header-->
 
+<section id="form">
+    @yield('login')
+</section>
+
 <section id="cart_items">
    @yield('content')
 </section> <!--/#cart_items-->
