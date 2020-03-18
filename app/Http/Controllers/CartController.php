@@ -42,4 +42,25 @@ class CartController extends Controller
             ->get();
         return view('pages.cart')->with('all_published_cart', $all_published_cart);
     }
+
+    public function delete_cart($id)
+    {
+        \Cart::remove($id);
+        return Redirect::to('/show-cart');
+    }
+
+    public function update_qty_up($id, $quantity)
+    {
+        \Cart::update($id, array(
+            'quantity' => +1
+        ));
+        return Redirect::to('/show-cart');
+    }
+    public function update_qty_down($id, $quantity)
+    {
+        \Cart::update($id, array(
+            'quantity' => -1
+        ));
+        return Redirect::to('/show-cart');
+    }
 }

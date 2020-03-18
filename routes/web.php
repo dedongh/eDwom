@@ -19,6 +19,12 @@ Route::get('/view_product/{product_id}', 'HomeController@view_product');
 Route::post('/add-to-cart', 'CartController@add_to_cart');
 // show cart
 Route::get('/show-cart', 'CartController@show_cart');
+// delete cart
+Route::get('/delete-cart/{id}', 'CartController@delete_cart');
+// update quantity
+Route::get('/update-qty-up/{id}/{quantity}', 'CartController@update_qty_up');
+Route::get('/update-qty-down/{id}/{quantity}', 'CartController@update_qty_down');
+
 
 
 /*************************
